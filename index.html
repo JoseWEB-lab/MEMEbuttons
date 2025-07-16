@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fiesta de Formas y Memes</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1a1a1a;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin: 30px 0;
+      font-size: 2em;
+      color: #ffea00;
+      text-shadow: 2px 2px #000;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0.3; transform: scale(1.1); }
+    }
+
+    .container {
+      display: flex;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .boton {
+      width: 120px;
+      height: 120px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .boton.clicked::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, white 10%, transparent 60%);
+      animation: flash 0.4s ease-out;
+      border-radius: inherit;
+    }
+
+    @keyframes flash {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    /* Botones originales */
+    .circulo { border-radius: 50%; background-color: #e91e63; }
+    .triangulo {
+      width: 0;
+      height: 0;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      border-bottom: 120px solid #3f51b5;
+      background: none;
+    }
+    .cuadrado { background-color: #4caf50; }
+    .pentagono {
+      clip-path: polygon(50% 0%, 95% 35%, 78% 100%, 22% 100%, 5% 35%);
+      background-color: #ff9800;
+    }
+
+    /* Botones nuevos */
+    .gota {
+      clip-path: ellipse(40% 60% at 50% 50%);
+      background-color: #00bcd4;
+    }
+
+    .estrella {
+      clip-path: polygon(
+        50% 0%, 60% 35%, 98% 35%, 68% 57%, 80% 100%,
+        50% 70%, 20% 100%, 32% 57%, 2% 35%, 40% 35%
+      );
+      background-color: #ffc107;
+    }
+
+    .rayo {
+      background-image: url('rayo.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¿¿¿QUE ES ESTO???</h1>
+
+  <audio autoplay loop>
+    <source src="fondo.mp3" type="audio/mpeg">
+    Tu navegador no soporta música de fondo.
+  </audio>
+
+  <div class="container">
+    <!-- Botones originales -->
+    <button class="boton circulo" onclick="playSound(this, 'sonido1.mp3')"></button>
+    <button class="boton triangulo" onclick="playSound(this, 'sonido2.mp3')"></button>
+    <button class="boton cuadrado" onclick="playSound(this, 'sonido3.mp3')"></button>
+    <button class="boton pentagono" onclick="playSound(this, 'sonido4.mp3')"></button>
+
+    <!-- Botones nuevos -->
+    <button class="boton gota" onclick="playSound(this, 'sonido5.mp3')"></button>      <!-- Acá está el inodoro que habla -->
+    <button class="boton estrella" onclick="playSound(this, 'sonido6.mp3')"></button>   <!-- SIUUUUUUUUUU -->
+    <button class="boton rayo" onclick="playSound(this, 'sonido7.mp3')"></button>       <!-- ¡CÁLLATE MIERDA! -->
+  </div>
+
+  <script>
+    function playSound(button, src) {
+      const audio = new Audio(src);
+      audio.play();
+      button.classList.add('clicked');
+      setTimeout(() => button.classList.remove('clicked'), 400);
+    }
+  </script>
+
+</body>
+</html>
